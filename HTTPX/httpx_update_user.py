@@ -1,7 +1,7 @@
 import httpx
 import time
 
-def get_random_email() -> str:
+def get_random_email():
     return f"test.{time.time()}@example.com"
 
 create_user_payload = {
