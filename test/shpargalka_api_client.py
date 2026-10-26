@@ -95,3 +95,12 @@ print(response.json())
 response = client.create_xxx(payload)
 print(response.json())
 
+
+
+"""
+cd C:\Users\tomyshev.yu\Desktop\courses\qa-automation-engineer-api-course
+.\venv\Scripts\activate
+uvicorn main:app --reload
+
+http://localhost:8000/docs
+"""

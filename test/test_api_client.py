@@ -1,18 +1,21 @@
-from clients.api_client import APIClient
+from clients.users.test_client import get_users_client, CreateUserRequestDict
+from clients.private_http_builder import AuthenticationUserDict
+
+create_users_request = CreateUserRequestDict(
+    email="1@1.com",
+    password="123456",
+    lastName="qwerty",
+    firstName="qwerty",
+    middleName="qwerty",
+)
+
+authentication_user = AuthenticationUserDict(
+    email=create_users_request['email'],
+    password=create_users_request['password']
+)
+
+users_client = get_users_client(authentication_user)
 
 
-class UsersClient(APIClient):
-    def create_user_api(self, request):
-        return self.post("/api/v1/users", json=request)
-
-    def get_user_api(self, user_id):
-        return self.get(f"/api/v1/users/{user_id}")
-
-    def get_user_me_api(self):
-        return self.get("/api/v1/users/me")
-
-    def update_user_api(self, user_id, request):
-        return self.patch(f"/api/v1/users/{user_id}", json=request)
-
-    def delete_user_api(self, user_id):
-        return self.delete(f"/api/v1/users/{user_id}")
+create_user_response = users_client.create_user(create_users_request)
+print('Create user data:', create_user_response)
