@@ -1,11 +1,12 @@
 import httpx
 import time
+from tools.fakers import fake
 
 def get_random_email():
     return f"test.{time.time()}@example.com"
 
 create_user_payload = {
-    "email": get_random_email(),
+    "email": fake.email(),
     "password": "string",
     "lastName": "string",
     "firstName": "string",
