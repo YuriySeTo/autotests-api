@@ -1,5 +1,7 @@
-# conftest.py
 pytest_plugins = (
-    "tests.fixtures.browsers",
-    "tests.fixtures.api",
+    "fixtures.users",
+    "fixtures.files",
+    "fixtures.courses",
+    "fixtures.authentication",
+    "fixtures.exercises",
 )
