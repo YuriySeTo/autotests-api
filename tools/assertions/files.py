@@ -1,6 +1,6 @@
 import httpx
 
-from clients.errors_schema import ValidationErrorResponseSchema, ValidationErrorSchema
+from clients.errors_schema import ValidationErrorResponseSchema, ValidationErrorSchema, InternalErrorResponseSchema
 
 from clients.files.files_schema import (
     CreateFileResponseSchema,
@@ -9,7 +9,7 @@ from clients.files.files_schema import (
     GetFileResponseSchema
 )
 from tools.assertions.base import assert_equal
-from tools.assertions.errors import assert_validation_error_response
+from tools.assertions.errors import assert_validation_error_response, assert_internal_error_response
 
 
 def assert_create_file_response(request: CreateFileRequestSchema, response: CreateFileResponseSchema):
