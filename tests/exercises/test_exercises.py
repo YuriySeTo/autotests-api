@@ -9,7 +9,9 @@ from clients.exercises.exercises_schema import (
     CreateExerciseResponseSchema,
     GetExerciseResponseSchema,
     UpdateExerciseRequestSchema,
-    UpdateExerciseResponseSchema
+    UpdateExerciseResponseSchema,
+    GetExercisesQuerySchema,      # <--- Добавили
+    GetExercisesResponseSchema    # <--- Добавили
 )
 from fixtures.courses import CourseFixture
 from fixtures.exercises import ExerciseFixture
@@ -18,7 +20,8 @@ from tools.assertions.exercises import (
     assert_create_exercise_response,
     assert_get_exercise_response,
     assert_update_exercise_response,
-    assert_exercise_not_found_response
+    assert_exercise_not_found_response,
+    assert_get_exercises_response # <--- Добавили
 )
 from tools.assertions.schema import validate_json_schema
 
@@ -82,20 +85,39 @@ class TestExercises:
         Тест проверяет успешное удаление задания и то, что оно больше не находится по ID.
         """
         exercise_id = function_exercise.response.exercise.id
-
-        # 1. Удаляем задание
         delete_response = exercises_client.delete_exercise_api(exercise_id)
         assert_status_code(delete_response.status_code, HTTPStatus.OK)
 
-        # 2. Пытаемся получить удаленное задание
         get_response = exercises_client.get_exercise_api(exercise_id)
-
-        # 3. Проверяем, что сервер вернул 404 Not Found
         assert_status_code(get_response.status_code, HTTPStatus.NOT_FOUND)
-
-        # 4. Парсим ответ в модель внутренней ошибки
         response_data = InternalErrorResponseSchema.model_validate_json(get_response.text)
-
-        # 5. Проверяем текст ошибки и валидируем JSON-схему
         assert_exercise_not_found_response(response_data)
         validate_json_schema(get_response.json(), response_data.model_json_schema())
+
+
+    def test_get_exercises(
+            self,
+            exercises_client: ExercisesClient,
+            function_course: CourseFixture,
+            function_exercise: ExerciseFixture
+    ):
+        """
+        Тест проверяет успешное получение списка заданий для конкретного курса.
+        """
+        # 1. Формируем параметры запроса
+        query = GetExercisesQuerySchema(course_id=function_course.response.course.id)
+
+        # 2. Отправляем GET-запрос на получение списка заданий
+        response = exercises_client.get_exercises_api(query)
+
+        # 3. Проверяем статус-код
+        assert_status_code(response.status_code, HTTPStatus.OK)
+
+        # 4. Парсим ответ
+        response_data = GetExercisesResponseSchema.model_validate_json(response.text)
+
+        # 5. Проверяем, что в списке есть наше созданное задание
+        assert_get_exercises_response(response_data, [function_exercise.response])
+
+        # 6. Валидируем JSON-схему
+        validate_json_schema(response.json(), response_data.model_json_schema())

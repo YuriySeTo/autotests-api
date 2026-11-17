@@ -4,10 +4,11 @@ from clients.exercises.exercises_schema import (
     ExerciseSchema,
     GetExerciseResponseSchema,
     UpdateExerciseRequestSchema,
-    UpdateExerciseResponseSchema
+    UpdateExerciseResponseSchema,
+    GetExercisesResponseSchema  # <--- Добавили для списка
 )
 from clients.errors_schema import InternalErrorResponseSchema
-from tools.assertions.base import assert_equal
+from tools.assertions.base import assert_equal, assert_length
 from tools.assertions.errors import assert_internal_error_response
 
 
@@ -17,10 +18,6 @@ def assert_create_exercise_response(
 ):
     """
     Проверяет, что ответ на создание задания соответствует отправленному запросу.
-
-    :param request: Исходный запрос на создание задания.
-    :param response: Ответ API с данными созданного задания.
-    :raises AssertionError: Если хотя бы одно поле не совпадает.
     """
     assert_equal(response.exercise.title, request.title, "title")
     assert_equal(response.exercise.course_id, request.course_id, "course_id")
@@ -34,10 +31,6 @@ def assert_create_exercise_response(
 def assert_exercise(actual: ExerciseSchema, expected: ExerciseSchema):
     """
     Проверяет, что фактические данные задания соответствуют ожидаемым.
-
-    :param actual: Фактические данные задания.
-    :param expected: Ожидаемые данные задания.
-    :raises AssertionError: Если хотя бы одно поле не совпадает.
     """
     assert_equal(actual.id, expected.id, "id")
     assert_equal(actual.title, expected.title, "title")
@@ -55,10 +48,6 @@ def assert_get_exercise_response(
 ):
     """
     Проверяет, что ответ на получение задания соответствует ответу на его создание.
-
-    :param get_exercise_response: Ответ API при запросе данных задания.
-    :param create_exercise_response: Ответ API при создании задания.
-    :raises AssertionError: Если данные не совпадают.
     """
     assert_exercise(get_exercise_response.exercise, create_exercise_response.exercise)
 
@@ -69,10 +58,6 @@ def assert_update_exercise_response(
 ):
     """
     Проверяет, что ответ на обновление задания соответствует данным из запроса.
-
-    :param request: Исходный запрос на обновление задания.
-    :param response: Ответ API с обновленными данными задания.
-    :raises AssertionError: Если хотя бы одно поле не совпадает.
     """
     assert_equal(response.exercise.title, request.title, "title")
     assert_equal(response.exercise.max_score, request.max_score, "max_score")
@@ -85,9 +70,25 @@ def assert_update_exercise_response(
 def assert_exercise_not_found_response(actual: InternalErrorResponseSchema):
     """
     Проверяет, что ответ на запрос несуществующего задания содержит ошибку "Exercise not found".
-
-    :param actual: Фактический ответ от API.
-    :raises AssertionError: Если ответ не соответствует ожидаемой ошибке.
     """
     expected = InternalErrorResponseSchema(details="Exercise not found")
     assert_internal_error_response(actual, expected)
+
+
+def assert_get_exercises_response(
+        get_exercises_response: GetExercisesResponseSchema,
+        create_exercise_responses: list[CreateExerciseResponseSchema]
+):
+    """
+    Проверяет, что ответ на получение списка заданий соответствует ответам на их создание.
+
+    :param get_exercises_response: Ответ API при запросе списка заданий.
+    :param create_exercise_responses: Список API ответов при создании заданий.
+    :raises AssertionError: Если данные заданий не совпадают.
+    """
+    # Проверяем, что количество заданий в ответе совпадает с ожидаемым
+    assert_length(get_exercises_response.exercises, create_exercise_responses, "exercises")
+
+    # Проходимся по каждому заданию и сравниваем
+    for index, create_exercise_response in enumerate(create_exercise_responses):
+        assert_exercise(get_exercises_response.exercises[index], create_exercise_response.exercise)
