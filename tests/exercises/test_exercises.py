@@ -1,39 +1,40 @@
 from http import HTTPStatus
 
+import allure
 import pytest
+from allure_commons.types import Severity  # Импортируем enum Severity из Allure
 
 from clients.errors_schema import InternalErrorResponseSchema
 from clients.exercises.exercises_client import ExercisesClient
-from clients.exercises.exercises_schema import (
-    CreateExerciseRequestSchema,
-    CreateExerciseResponseSchema,
-    GetExerciseResponseSchema,
-    UpdateExerciseRequestSchema,
-    UpdateExerciseResponseSchema,
-    GetExercisesQuerySchema,      # <--- Добавили
-    GetExercisesResponseSchema    # <--- Добавили
-)
+from clients.exercises.exercises_schema import CreateExerciseRequestSchema, CreateExerciseResponseSchema, \
+    GetExerciseResponseSchema, UpdateExerciseRequestSchema, UpdateExerciseResponseSchema, GetExercisesQuerySchema, \
+    GetExercisesResponseSchema
 from fixtures.courses import CourseFixture
 from fixtures.exercises import ExerciseFixture
+from tools.allure.epics import AllureEpic
+from tools.allure.features import AllureFeature
+from tools.allure.stories import AllureStory
+from tools.allure.tags import AllureTag
 from tools.assertions.base import assert_status_code
-from tools.assertions.exercises import (
-    assert_create_exercise_response,
-    assert_get_exercise_response,
-    assert_update_exercise_response,
-    assert_exercise_not_found_response,
-    assert_get_exercises_response # <--- Добавили
-)
+from tools.assertions.exercises import assert_create_exercise_response, assert_get_exercise_response, \
+    assert_update_exercise_response, assert_exercise_not_found_response, assert_get_exercises_response
 from tools.assertions.schema import validate_json_schema
 
 
 @pytest.mark.exercises
 @pytest.mark.regression
+@allure.tag(AllureTag.EXERCISES, AllureTag.REGRESSION)
+@allure.epic(AllureEpic.LMS)
+@allure.feature(AllureFeature.EXERCISES)
+@allure.parent_suite(AllureEpic.LMS)          # Дублируем epic для корректного отображения в дереве Suites
+@allure.suite(AllureFeature.EXERCISES)        # Дублируем feature для корректного отображения в дереве Suites
 class TestExercises:
-    def test_create_exercise(
-            self,
-            exercises_client: ExercisesClient,
-            function_course: CourseFixture
-    ):
+    @allure.tag(AllureTag.CREATE_ENTITY)
+    @allure.story(AllureStory.CREATE_ENTITY)
+    @allure.title("Create exercise")
+    @allure.severity(Severity.BLOCKER)  # Добавили severity
+    @allure.sub_suite(AllureStory.CREATE_ENTITY)  # Дублируем story для корректного отображения в дереве Suites
+    def test_create_exercise(self, exercises_client: ExercisesClient, function_course: CourseFixture):
         """
         Тест проверяет успешное создание нового задания.
         """
@@ -45,6 +46,11 @@ class TestExercises:
         assert_create_exercise_response(request, response_data)
         validate_json_schema(response.json(), response_data.model_json_schema())
 
+    @allure.tag(AllureTag.GET_ENTITY)
+    @allure.story(AllureStory.GET_ENTITY)
+    @allure.title("Get exercise")
+    @allure.severity(Severity.BLOCKER)  # Добавили severity
+    @allure.sub_suite(AllureStory.GET_ENTITY)     # Дублируем story для корректного отображения в дереве Suites
     def test_get_exercise(
             self,
             exercises_client: ExercisesClient,
@@ -60,6 +66,11 @@ class TestExercises:
         assert_get_exercise_response(response_data, function_exercise.response)
         validate_json_schema(response.json(), response_data.model_json_schema())
 
+    @allure.tag(AllureTag.UPDATE_ENTITY)
+    @allure.story(AllureStory.UPDATE_ENTITY)
+    @allure.title("Update exercise")
+    @allure.severity(Severity.CRITICAL)  # Добавили severity
+    @allure.sub_suite(AllureStory.UPDATE_ENTITY)  # Дублируем story для корректного отображения в дереве Suites
     def test_update_exercise(
             self,
             exercises_client: ExercisesClient,
@@ -76,6 +87,11 @@ class TestExercises:
         assert_update_exercise_response(request, response_data)
         validate_json_schema(response.json(), response_data.model_json_schema())
 
+    @allure.tag(AllureTag.DELETE_ENTITY)
+    @allure.story(AllureStory.DELETE_ENTITY)
+    @allure.title("Delete exercise")
+    @allure.severity(Severity.CRITICAL)  # Добавили severity
+    @allure.sub_suite(AllureStory.DELETE_ENTITY)  # Дублируем story для корректного отображения в дереве Suites
     def test_delete_exercise(
             self,
             exercises_client: ExercisesClient,
@@ -94,7 +110,11 @@ class TestExercises:
         assert_exercise_not_found_response(response_data)
         validate_json_schema(get_response.json(), response_data.model_json_schema())
 
-
+    @allure.tag(AllureTag.GET_ENTITIES)
+    @allure.story(AllureStory.GET_ENTITIES)
+    @allure.title("Get exercises")
+    @allure.severity(Severity.BLOCKER)  # Добавили severity
+    @allure.sub_suite(AllureStory.GET_ENTITIES)   # Дублируем story для корректного отображения в дереве Suites
     def test_get_exercises(
             self,
             exercises_client: ExercisesClient,
