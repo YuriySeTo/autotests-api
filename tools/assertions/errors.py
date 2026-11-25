@@ -1,9 +1,13 @@
-import allure  # Импортируем allure
+import allure
+
 from clients.errors_schema import ValidationErrorSchema, ValidationErrorResponseSchema, InternalErrorResponseSchema
 from tools.assertions.base import assert_equal, assert_length
+from tools.logger import get_logger  # Импортируем функцию для создания логгера
+
+logger = get_logger("ERRORS_ASSERTIONS")  # Создаем логгер с именем "ERRORS_ASSERTIONS"
 
 
-@allure.step("Check validation error")  # Добавили allure шаг
+@allure.step("Check validation error")
 def assert_validation_error(actual: ValidationErrorSchema, expected: ValidationErrorSchema):
     """
     Проверяет, что объект ошибки валидации соответствует ожидаемому значению.
@@ -12,6 +16,8 @@ def assert_validation_error(actual: ValidationErrorSchema, expected: ValidationE
     :param expected: Ожидаемая ошибка.
     :raises AssertionError: Если значения полей не совпадают.
     """
+    # Логируем факт начала проверки
+    logger.info("Check validation error")
     assert_equal(actual.type, expected.type, "type")
     assert_equal(actual.input, expected.input, "input")
     assert_equal(actual.context, expected.context, "context")
@@ -19,7 +25,7 @@ def assert_validation_error(actual: ValidationErrorSchema, expected: ValidationE
     assert_equal(actual.location, expected.location, "location")
 
 
-@allure.step("Check validation error response")  # Добавили allure шаг
+@allure.step("Check validation error response")
 def assert_validation_error_response(
         actual: ValidationErrorResponseSchema,
         expected: ValidationErrorResponseSchema
@@ -32,13 +38,16 @@ def assert_validation_error_response(
     :param expected: Ожидаемый ответ API.
     :raises AssertionError: Если значения полей не совпадают.
     """
+    # Логируем факт начала проверки
+    logger.info("Check validation error response")
+
     assert_length(actual.details, expected.details, "details")
 
     for index, detail in enumerate(expected.details):
         assert_validation_error(actual.details[index], detail)
 
 
-@allure.step("Check internal error response")  # Добавили allure шаг
+@allure.step("Check internal error response")
 def assert_internal_error_response(
         actual: InternalErrorResponseSchema,
         expected: InternalErrorResponseSchema
@@ -50,4 +59,6 @@ def assert_internal_error_response(
     :param expected: Ожидаемый ответ API.
     :raises AssertionError: Если значения полей не совпадают.
     """
+    # Логируем факт начала проверки
+    logger.info("Check internal error response")
     assert_equal(actual.details, expected.details, "details")
