@@ -7,4 +7,5 @@ __pycache__/
 .env
 *.db
 storage/
-.venv/
+allure-results
+allure-report
