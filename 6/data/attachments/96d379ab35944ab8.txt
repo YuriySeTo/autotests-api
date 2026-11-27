@@ -1,0 +1,11 @@
+curl -X 'POST' \
+  'http://localhost:8000/api/v1/courses' \
+  -H 'host: localhost:8000' \
+  -H 'accept: */*' \
+  -H 'accept-encoding: gzip, deflate' \
+  -H 'connection: keep-alive' \
+  -H 'user-agent: python-httpx/0.28.1' \
+  -H 'authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHBpcmUiOiIyMDI2LTExLTI3VDAzOjM4OjA3LjQ5NDcyMSIsInVzZXJfaWQiOiJmZGZjNmE3MC03M2UwLTQ5YzItOGJlMS1hZWZhYzdhNWQzNTYifQ.nkyi-F3qw9hJwkQm9aE3JbMj4CXK3AygWOsVm3G-bkY' \
+  -H 'content-length: 416' \
+  -H 'content-type: application/json' \
+  -d '{"title":"Issue job not story.","maxScore":100,"minScore":14,"description":"Evidence middle same subject evidence join son. My scientist old end million land. Throw of west under.\nWhole put child ask stage everyone. Way nice establish foot must pattern. Issue away candidate.","estimatedTime":"8 weeks","previewFileId":"c013ff89-1c9a-4342-ae64-99da35bc8433","createdByUserId":"fdfc6a70-73e0-49c2-8be1-aefac7a5d356"}'

@@ -1,0 +1,38 @@
+"DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
+"
+        Тест проверяет успешное обновление данных курса.
+        ","58","Update course","LMS service","2026-11-27","passed","2026-11-27","Update entity","Courses","",""
+"","13","Get file","LMS service","2026-11-27","passed","2026-11-27","Get entity","Files","",""
+"
+        Тест проверяет, что API возвращает ошибку 422 при передаче невалидного UUID.
+        ","20","Get file with incorrect file id","LMS service","2026-11-27","passed","2026-11-27","Validate entity","Files","",""
+"
+        Тест проверяет успешное удаление задания и то, что оно больше не находится по ID.
+        ","27","Delete exercise","LMS service","2026-11-27","passed","2026-11-27","Delete entity","Exercises","",""
+"","543","Create user","LMS service","2026-11-27","passed","2026-11-27","Create entity","Users","",""
+"","27","Create file with empty directory","LMS service","2026-11-27","passed","2026-11-27","Validate entity","Files","",""
+"","288","Login with correct email and password","LMS service","2026-11-27","passed","2026-11-27","Login","Authentication","",""
+"
+        Тест проверяет успешное создание нового задания.
+        ","17","Create exercise","LMS service","2026-11-27","passed","2026-11-27","Create entity","Exercises","",""
+"
+        Тест проверяет получение списка курсов пользователя.
+        ","22","Get courses","LMS service","2026-11-27","passed","2026-11-27","Get entities","Courses","",""
+"
+        Тест проверяет успешное получение данных созданного задания.
+        ","14","Get exercise","LMS service","2026-11-27","passed","2026-11-27","Get entity","Exercises","",""
+"
+        Тест проверяет успешное обновление данных задания.
+        ","29","Update exercise","LMS service","2026-11-27","passed","2026-11-27","Update entity","Exercises","",""
+"","279","Create file with empty filename","LMS service","2026-11-27","passed","2026-11-27","Validate entity","Files","",""
+"","23","Delete file","LMS service","2026-11-27","passed","2026-11-27","Delete entity","Files","",""
+"","279","Create file","LMS service","2026-11-27","passed","2026-11-27","Create entity","Files","",""
+"
+        Тест проверяет успешное получение списка заданий для конкретного курса.
+        ","14","Get exercises","LMS service","2026-11-27","passed","2026-11-27","Get entities","Exercises","",""
+"","12","Get user me","LMS service","2026-11-27","passed","2026-11-27","Get entity","Users","",""
+"","284","Create user","LMS service","2026-11-27","passed","2026-11-27","Create entity","Users","",""
+"
+        Тест проверяет успешное создание нового курса.
+        ","28","Create course","LMS service","2026-11-27","passed","2026-11-27","Create entity","Courses","",""
+"","538","Create user","LMS service","2026-11-27","passed","2026-11-27","Create entity","Users","",""

@@ -1,0 +1,11 @@
+curl -X 'POST' \
+  'http://localhost:8000/api/v1/courses' \
+  -H 'host: localhost:8000' \
+  -H 'accept: */*' \
+  -H 'accept-encoding: gzip, deflate' \
+  -H 'connection: keep-alive' \
+  -H 'user-agent: python-httpx/0.28.1' \
+  -H 'authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHBpcmUiOiIyMDI2LTExLTI3VDAzOjM4OjA3LjIyMjgzNyIsInVzZXJfaWQiOiJjZDdlOTZiZS01ZmMzLTQ2ZDUtODNmMi03NGMxYzg4NDViOGMifQ.n_Hbyj9zjm4dNXkuPUwATBWfaf8DuTPPBE1LAfhGlZw' \
+  -H 'content-length: 329' \
+  -H 'content-type: application/json' \
+  -d '{"title":"Century individual across whether morning enjoy.","maxScore":72,"minScore":8,"description":"Strategy pay huge democratic owner look including. Through else agreement mind improve.","estimatedTime":"7 weeks","previewFileId":"5d33a82b-9f59-46ea-96c6-862b2367ac7d","createdByUserId":"cd7e96be-5fc3-46d5-83f2-74c1c8845b8c"}'

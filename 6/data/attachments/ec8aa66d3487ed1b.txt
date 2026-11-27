@@ -1,0 +1,11 @@
+curl -X 'POST' \
+  'http://localhost:8000/api/v1/courses' \
+  -H 'host: localhost:8000' \
+  -H 'accept: */*' \
+  -H 'accept-encoding: gzip, deflate' \
+  -H 'connection: keep-alive' \
+  -H 'user-agent: python-httpx/0.28.1' \
+  -H 'authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHBpcmUiOiIyMDI2LTExLTI3VDAzOjM4OjA4LjY1OTA4NyIsInVzZXJfaWQiOiJiNTAzNTRjYy0yYWYzLTQ4NDEtOWEyNi03MTNkMmU0ZjllNWEifQ.Rkg2Dz-iHRjWnjv9CFcQvVL9S3G-fhJ60hvw4NLydtI' \
+  -H 'content-length: 420' \
+  -H 'content-type: application/json' \
+  -d '{"title":"Certainly another figure sell try.","maxScore":76,"minScore":29,"description":"Each him tell. Four true whose its nearly commercial their. Here parent huge threat middle.\nWind behavior value read yourself single knowledge. Style for term protect hotel school seek ball.","estimatedTime":"2 weeks","previewFileId":"a0a3b90b-1d0f-4fef-a16d-360520f63620","createdByUserId":"b50354cc-2af3-4841-9a26-713d2e4f9e5a"}'

@@ -1,0 +1,11 @@
+curl -X 'POST' \
+  'http://localhost:8000/api/v1/courses' \
+  -H 'host: localhost:8000' \
+  -H 'accept: */*' \
+  -H 'accept-encoding: gzip, deflate' \
+  -H 'connection: keep-alive' \
+  -H 'user-agent: python-httpx/0.28.1' \
+  -H 'authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHBpcmUiOiIyMDI2LTExLTI3VDAzOjM4OjA5LjU3ODg3OCIsInVzZXJfaWQiOiI3NDIyMThmZC1iYmNjLTRmZjMtYTUxNS01ZTdiOWQ4MTMxMDAifQ.IlxYqhh72Vcw-oIwyN5hqmbQ5yas_n5hvCvLEy3Mw2I' \
+  -H 'content-length: 426' \
+  -H 'content-type: application/json' \
+  -d '{"title":"Bag city so set discover push.","maxScore":65,"minScore":27,"description":"Spring after floor try example. Media least ago sound significant.\nBack adult affect suddenly too piece. Between but hour.\nAgainst within ever least single majority institution. Avoid boy would rest.","estimatedTime":"4 weeks","previewFileId":"09a76f53-f8a1-4e2d-80dd-f79606c5f8a0","createdByUserId":"742218fd-bbcc-4ff3-a515-5e7b9d813100"}'

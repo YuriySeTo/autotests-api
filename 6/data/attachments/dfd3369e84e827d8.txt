@@ -1,0 +1,26 @@
+INFO     HTTP_CLIENT:event_hooks.py:28 Make POST request to http://localhost:8000/api/v1/users
+INFO     HTTP_CLIENT:event_hooks.py:38 Got response 200 OK from http://localhost:8000/api/v1/users
+INFO     HTTP_CLIENT:event_hooks.py:28 Make POST request to http://localhost:8000/api/v1/authentication/login
+INFO     HTTP_CLIENT:event_hooks.py:38 Got response 200 OK from http://localhost:8000/api/v1/authentication/login
+INFO     HTTP_CLIENT:event_hooks.py:28 Make POST request to http://localhost:8000/api/v1/files
+INFO     HTTP_CLIENT:event_hooks.py:38 Got response 200 OK from http://localhost:8000/api/v1/files
+INFO     HTTP_CLIENT:event_hooks.py:28 Make POST request to http://localhost:8000/api/v1/courses
+INFO     HTTP_CLIENT:event_hooks.py:38 Got response 200 OK from http://localhost:8000/api/v1/courses
+INFO     HTTP_CLIENT:event_hooks.py:28 Make POST request to http://localhost:8000/api/v1/exercises
+INFO     HTTP_CLIENT:event_hooks.py:38 Got response 200 OK from http://localhost:8000/api/v1/exercises
+INFO     HTTP_CLIENT:event_hooks.py:28 Make GET request to http://localhost:8000/api/v1/exercises?courseId=f252b602-62ec-4076-a286-533068bd3abb
+INFO     HTTP_CLIENT:event_hooks.py:38 Got response 200 OK from http://localhost:8000/api/v1/exercises?courseId=f252b602-62ec-4076-a286-533068bd3abb
+INFO     BASE_ASSERTIONS:base.py:19 Check that response status code equals to 200
+INFO     EXERCISES_ASSERTIONS:exercises.py:110 Check get exercises list response matches create responses
+INFO     BASE_ASSERTIONS:base.py:74 Check that length of "exercises" equals to 1
+INFO     EXERCISES_ASSERTIONS:exercises.py:44 Check exercise data matches expected
+INFO     BASE_ASSERTIONS:base.py:38 Check that "id" equals to 84bd4ca3-d1ae-4ff0-bf7b-2a607f8a5d21
+INFO     BASE_ASSERTIONS:base.py:38 Check that "title" equals to Relationship population mouth peace perform paper future.
+INFO     BASE_ASSERTIONS:base.py:38 Check that "course_id" equals to f252b602-62ec-4076-a286-533068bd3abb
+INFO     BASE_ASSERTIONS:base.py:38 Check that "max_score" equals to 79
+INFO     BASE_ASSERTIONS:base.py:38 Check that "min_score" equals to 6
+INFO     BASE_ASSERTIONS:base.py:38 Check that "order_index" equals to 92
+INFO     BASE_ASSERTIONS:base.py:38 Check that "description" equals to Building offer find according long market. Form after set suddenly. Enter great contain treat unit.
+Few activity material science at news three.
+INFO     BASE_ASSERTIONS:base.py:38 Check that "estimated_time" equals to 3 weeks
+INFO     SCHEMA_ASSERTIONS:schema.py:22 Validating JSON schema

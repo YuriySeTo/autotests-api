@@ -1,0 +1,11 @@
+curl -X 'PATCH' \
+  'http://localhost:8000/api/v1/courses/179675a4-c767-4c45-bef6-c3880911df30' \
+  -H 'host: localhost:8000' \
+  -H 'accept: */*' \
+  -H 'accept-encoding: gzip, deflate' \
+  -H 'connection: keep-alive' \
+  -H 'user-agent: python-httpx/0.28.1' \
+  -H 'authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHBpcmUiOiIyMDI2LTExLTI3VDAzOjM4OjA1LjcyODQxMyIsInVzZXJfaWQiOiJhN2VkZGM5Yy1lNjUwLTRkZjItOTZmZi0xOWE1OTE5MGY4NzQifQ.42O7d2Mf-qcPuVKd7ZS3o4sZ-I2h-kklzDfRLgHCDPM' \
+  -H 'content-length: 307' \
+  -H 'content-type: application/json' \
+  -d '{"title":"Increase chance time painting fund public.","maxScore":55,"minScore":30,"description":"Within financial force suddenly. Tax again thus.\nMatter us imagine. World hair list join. Hope big two ready.\nGive main key situation. Now rich bring even include job analysis in.","estimatedTime":"10 weeks"}'

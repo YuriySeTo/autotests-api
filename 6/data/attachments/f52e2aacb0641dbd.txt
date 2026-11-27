@@ -1,0 +1,11 @@
+curl -X 'POST' \
+  'http://localhost:8000/api/v1/courses' \
+  -H 'host: localhost:8000' \
+  -H 'accept: */*' \
+  -H 'accept-encoding: gzip, deflate' \
+  -H 'connection: keep-alive' \
+  -H 'user-agent: python-httpx/0.28.1' \
+  -H 'authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHBpcmUiOiIyMDI2LTExLTI3VDAzOjM4OjA5Ljg1MTczMCIsInVzZXJfaWQiOiI0YjEzNTcwZC0yODRhLTQ4ZDgtYTVmNi04ZjAxYzcwNDIwYzAifQ.8U3CsSqKq6OQ1Jnd2vSK_QH6sQZ7vg5U_sly0XRGjx0' \
+  -H 'content-length: 409' \
+  -H 'content-type: application/json' \
+  -d '{"title":"Hot they focus must treatment improve argue.","maxScore":97,"minScore":3,"description":"Amount watch list rate teach. Watch way issue successful contain.\nEnjoy western prove five push white. Far either food can suggest probably. Central old window interest.","estimatedTime":"10 weeks","previewFileId":"628de84c-c4e6-429c-ae73-d3bd659591f6","createdByUserId":"4b13570d-284a-48d8-a5f6-8f01c70420c0"}'

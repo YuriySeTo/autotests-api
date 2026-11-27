@@ -1,0 +1,18 @@
+INFO     HTTP_CLIENT:event_hooks.py:28 Make POST request to http://localhost:8000/api/v1/users
+INFO     HTTP_CLIENT:event_hooks.py:38 Got response 200 OK from http://localhost:8000/api/v1/users
+INFO     HTTP_CLIENT:event_hooks.py:28 Make POST request to http://localhost:8000/api/v1/authentication/login
+INFO     HTTP_CLIENT:event_hooks.py:38 Got response 200 OK from http://localhost:8000/api/v1/authentication/login
+INFO     HTTP_CLIENT:event_hooks.py:28 Make POST request to http://localhost:8000/api/v1/files
+INFO     HTTP_CLIENT:event_hooks.py:38 Got response 200 OK from http://localhost:8000/api/v1/files
+INFO     HTTP_CLIENT:event_hooks.py:28 Make POST request to http://localhost:8000/api/v1/courses
+INFO     HTTP_CLIENT:event_hooks.py:38 Got response 200 OK from http://localhost:8000/api/v1/courses
+INFO     BASE_ASSERTIONS:base.py:19 Check that response status code equals to 200
+INFO     COURSES_ASSERTIONS:courses.py:90 Check create course response
+INFO     BASE_ASSERTIONS:base.py:38 Check that "title" equals to Century individual across whether morning enjoy.
+INFO     BASE_ASSERTIONS:base.py:38 Check that "max_score" equals to 72
+INFO     BASE_ASSERTIONS:base.py:38 Check that "min_score" equals to 8
+INFO     BASE_ASSERTIONS:base.py:38 Check that "description" equals to Strategy pay huge democratic owner look including. Through else agreement mind improve.
+INFO     BASE_ASSERTIONS:base.py:38 Check that "estimated_time" equals to 7 weeks
+INFO     BASE_ASSERTIONS:base.py:38 Check that "preview_file_id" equals to 5d33a82b-9f59-46ea-96c6-862b2367ac7d
+INFO     BASE_ASSERTIONS:base.py:38 Check that "created_by_user_id" equals to cd7e96be-5fc3-46d5-83f2-74c1c8845b8c
+INFO     SCHEMA_ASSERTIONS:schema.py:22 Validating JSON schema

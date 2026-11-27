@@ -1,0 +1,11 @@
+curl -X 'POST' \
+  'http://localhost:8000/api/v1/courses' \
+  -H 'host: localhost:8000' \
+  -H 'accept: */*' \
+  -H 'accept-encoding: gzip, deflate' \
+  -H 'connection: keep-alive' \
+  -H 'user-agent: python-httpx/0.28.1' \
+  -H 'authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHBpcmUiOiIyMDI2LTExLTI3VDAzOjM4OjA4LjM4NTgyOCIsInVzZXJfaWQiOiIxOTM4MmFjMC00ZTZkLTQ5NTctODFkNy00MWQ5ZmQzMDYzZjAifQ.VXHdsMjkUpYAaG8OjUmC3hwpZ8YhayXTUSSqadFxFCA' \
+  -H 'content-length: 429' \
+  -H 'content-type: application/json' \
+  -d '{"title":"Republican much under simple meet.","maxScore":95,"minScore":21,"description":"Watch well material speak production he lead. Realize store teach. Suffer win several just better.\nCarry father cultural particularly. Young road language bar line. Beautiful paper weight successful.","estimatedTime":"3 weeks","previewFileId":"3543615d-0291-4096-a552-27cd8d4d27f3","createdByUserId":"19382ac0-4e6d-4957-81d7-41d9fd3063f0"}'

@@ -1,0 +1,11 @@
+curl -X 'PATCH' \
+  'http://localhost:8000/api/v1/exercises/e83d0f09-49fb-4c14-8b8f-88ab00f745c6' \
+  -H 'host: localhost:8000' \
+  -H 'accept: */*' \
+  -H 'accept-encoding: gzip, deflate' \
+  -H 'connection: keep-alive' \
+  -H 'user-agent: python-httpx/0.28.1' \
+  -H 'authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHBpcmUiOiIyMDI2LTExLTI3VDAzOjM4OjA4LjM4NTgyOCIsInVzZXJfaWQiOiIxOTM4MmFjMC00ZTZkLTQ5NTctODFkNy00MWQ5ZmQzMDYzZjAifQ.VXHdsMjkUpYAaG8OjUmC3hwpZ8YhayXTUSSqadFxFCA' \
+  -H 'content-length: 354' \
+  -H 'content-type: application/json' \
+  -d '{"title":"Central resource per bed religious leg rest.","courseId":"a51a71d3-a420-45c6-97ca-b333e695bfe6","maxScore":74,"minScore":4,"orderIndex":57,"description":"Though herself recent risk. Yet because some look tell. Movement blue north argue another rather.\nScience than before including throughout war federal election.","estimatedTime":"10 weeks"}'
