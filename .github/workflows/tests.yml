@@ -58,12 +58,11 @@ jobs:
 
       # 8. Шаг для получения истории отчётов Allure, если она существует
       - name: Get Allure history
-        uses: actions/checkout@v4  # Опять клонируем репозиторий, чтобы получить историю отчётов
-        if: always()  # Всегда выполняем, независимо от успеха или неудачи предыдущих шагов
-        continue-on-error: true  # Если здесь возникнет ошибка, workflow всё равно продолжит выполнение
+        uses: actions/checkout@v4
+        ...
         with:
-          ref: gh-pages  # Указываем ветку gh-pages для получения отчётов
-          path: gh-pages  # Указываем путь для сохранения отчётов
+          ref: gh-pages
+          path: gh-pages
             
        # 9. Шаг для генерации и отображения отчёта Allure
       - name: Generates Allure Report with history
@@ -77,9 +76,10 @@ jobs:
       # 10. Шаг для деплоя отчёта Allure на GitHub Pages
       - name: Deploy report to Github Pages
         if: always()
-        uses: peaceiris/actions-gh-pages@v4
+        uses: JamesIves/github-pages-deploy-action@v4
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_branch: gh-pages
-          publish_dir: allure-history
-          force_orphan: true
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: gh-pages
+          folder: allure-history
+          clean: true
+          force: true # Принудительно пушим
