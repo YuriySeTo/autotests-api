@@ -1,70 +1,68 @@
-# Имя вашего workflow, которое будет отображаться в интерфейсе GitHub Actions
 name: API tests
 
-# Указываем, когда будет запускаться данный workflow
 on:
   push:
     branches:
-      - main  # Запускать workflow, когда будет сделан коммит в ветку main
+      - main
   pull_request:
     branches:
-      - main  # Запускать workflow, когда будет сделан pull request в ветку main
+      - main
 
-# Определяем все шаги, которые должны быть выполнены в рамках работы с тестами
 jobs:
   run-tests:
-    runs-on: ubuntu-latest  # Указываем, что тесты будут запускаться на последней версии Ubuntu
+    runs-on: ubuntu-latest
 
     steps:
-      # 1. Шаг, который будет клонировать ваш репозиторий на машину GitHub Actions
+      # 1. Checkout
       - name: Check out repository
-        uses: actions/checkout@v4  # Используем GitHub Action для клонирования репозитория
+        uses: actions/checkout@v4
 
-      # 2. Шаг для установки Python на виртуальной машине
+      # 2. Python
       - name: Set up Python
-        uses: actions/setup-python@v5  # Используем GitHub Action для установки Python
+        uses: actions/setup-python@v5
         with:
-          python-version: '3.11'  # Устанавливаем версию Python 3.11 (можно заменить на другую версию)
+          python-version: '3.11'
 
-      # 3. Шаг для клонирования репозитория с тестовым сервером в рабочую среду
+      # 3. Clone test server
       - name: Clone test server repository
         run: git clone https://github.com/Nikita-Filonov/qa-automation-engineer-api-course.git
 
-      # 4. Шаг для установки зависимостей для тестового сервера
+      # 4. Server deps
       - name: Install test server dependencies
         run: pip install -r qa-automation-engineer-api-course/requirements.txt
 
-      # 5. Шаг для запуска тестового сервера с необходимыми переменными окружения
+      # 5. Start server
       - name: Start a test server
         env:
-          APP_HOST: "http://localhost:8000"  # Устанавливаем адрес хоста сервера
-          DATABASE_URL: "sqlite+aiosqlite:///./local.db" # Устанавливаем URL локальной базы данных
-          JWT_ALGORITHM: "HS256" # Алгоритм для JWT токенов
-          JWT_SECRET_KEY: "qa-automation-engineer-api-course-secret-key" # Секретный ключ для JWT
-          JWT_ACCESS_TOKEN_EXPIRE: 1800 # Время жизни access token (в секундах)
-          JWT_REFRESH_TOKEN_EXPIRE: 5184000 # Время жизни refresh token (в секундах)
-        run: uvicorn main:app --host 0.0.0.0 --port 8000 --app-dir ./qa-automation-engineer-api-course & # Запускаем сервер с указанными переменными окружения
+          APP_HOST: "http://localhost:8000"
+          DATABASE_URL: "sqlite+aiosqlite:///./local.db"
+          JWT_ALGORITHM: "HS256"
+          JWT_SECRET_KEY: "qa-automation-engineer-api-course-secret-key"
+          JWT_ACCESS_TOKEN_EXPIRE: 1800
+          JWT_REFRESH_TOKEN_EXPIRE: 5184000
+        run: uvicorn main:app --host 0.0.0.0 --port 8000 --app-dir ./qa-automation-engineer-api-course &
 
-      # 6. Шаг для установки всех зависимостей проекта
+      # 6. Project deps
       - name: Install dependencies
         run: |
-          python -m pip install --upgrade pip  # Обновляем pip до последней версии
-          pip install -r requirements.txt  # Устанавливаем зависимости, указанные в requirements.txt
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
 
-      # 7. Шаг для запуска тестов с использованием pytest и генерации отчётов Allure
+      # 7. Tests
       - name: Run API tests with pytest and generate Allure results
         run: |
-          pytest -m regression --alluredir=allure-results --numprocesses 2  # Запускаем тесты, отмеченные как "regression", генерируем результаты для Allure
+          pytest -m regression --alluredir=allure-results --numprocesses 2
 
-      # 8. Шаг для получения истории отчётов Allure, если она существует
+      # 8. Get history (Клонируем в allure-history!)
       - name: Get Allure history
         uses: actions/checkout@v4
-        ...
+        if: always()
+        continue-on-error: true
         with:
           ref: gh-pages
-          path: gh-pages
-            
-       # 9. Шаг для генерации и отображения отчёта Allure
+          path: allure-history
+
+      # 9. Generate report
       - name: Generates Allure Report with history
         uses: simple-elf/allure-report-action@v1.15
         if: always()
@@ -73,7 +71,7 @@ jobs:
           allure_history: allure-history
           keep_reports: 20
 
-      # 10. Шаг для деплоя отчёта Allure на GitHub Pages
+      # 10. Deploy to pages (Используем JamesIves)
       - name: Deploy report to Github Pages
         if: always()
         uses: JamesIves/github-pages-deploy-action@v4
@@ -82,4 +80,3 @@ jobs:
           branch: gh-pages
           folder: allure-history
           clean: true
-          force: true # Принудительно пушим
